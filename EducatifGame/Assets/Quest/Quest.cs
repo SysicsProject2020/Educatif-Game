@@ -25,7 +25,7 @@ public class Quest : ScriptableObject
 [System.Serializable]
 public class ItemPositions
 {
-    public Transform position;
+    public Vector3 position;
     public GameObject obj;
     public string text;
 }
