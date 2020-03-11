@@ -8,6 +8,7 @@ public class PlayerEvents : MonoBehaviour
     public static event ShowCanvas showcanvas;
     bool iscollisionwithmaster;
     public GameManager gameManager;
+    public AlphabeticManager alphabeticManager;
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag == "Master")
@@ -24,7 +25,10 @@ public class PlayerEvents : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-       
+        if (collision.gameObject.GetComponent<ItemCollectable>()!=null)
+        {
+            alphabeticManager.getCollectableObj(collision.gameObject.GetComponent<ItemCollectable>());
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
