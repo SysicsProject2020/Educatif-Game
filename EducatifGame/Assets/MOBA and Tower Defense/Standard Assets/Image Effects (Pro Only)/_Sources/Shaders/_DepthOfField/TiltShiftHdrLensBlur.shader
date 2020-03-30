@@ -12,7 +12,7 @@
 	
 	struct v2f 
 	{
-		float4 pos : SV_POSITION;
+		float4 pos : POSITION;
 		float2 uv : TEXCOORD0;
 		float2 uv1 : TEXCOORD1;
 	};
@@ -109,17 +109,17 @@
 		return dot(tapCoord, tapCoord) * _BlurArea;
 	}	
 
-	float4 fragIrisPreview (v2f i) : SV_Target 
+	float4 fragIrisPreview (v2f i) : COLOR 
 	{
 		return WeightIrisMode(i.uv.xy) * 0.5;
 	}
 
-	float4 fragFieldPreview (v2f i) : SV_Target 
+	float4 fragFieldPreview (v2f i) : COLOR 
 	{
 		return WeightFieldMode(i.uv.xy) * 0.5;
 	}
 
-	float4 fragUpsample (v2f i) : SV_Target
+	float4 fragUpsample (v2f i) : COLOR
 	{
 		float4 blurred = tex2D(_Blurred, i.uv1.xy);
 		float4 frame = tex2D(_MainTex, i.uv.xy);
@@ -127,7 +127,7 @@
 		return lerp(frame, blurred, saturate(blurred.a));
 	}
 
-	float4 fragIris (v2f i) : SV_Target 
+	float4 fragIris (v2f i) : COLOR 
 	{
 		float4 centerTap = tex2D(_MainTex, i.uv.xy);
 		float4 sum = centerTap;
@@ -150,7 +150,7 @@
 		return float4(sum.rgb / (1.0 + NumDiscSamples), w);	
 	}
 	
-	float4 fragField (v2f i) : SV_Target 
+	float4 fragField (v2f i) : COLOR 
 	{
 		float4 centerTap = tex2D(_MainTex, i.uv.xy);
 		float4 sum = centerTap;
@@ -173,7 +173,7 @@
 		return float4(sum.rgb / (1.0 + NumDiscSamples), w);	
 	}
 
-	float4 fragIrisHQ (v2f i) : SV_Target 
+	float4 fragIrisHQ (v2f i) : COLOR 
 	{
 		float4 centerTap = tex2D(_MainTex, i.uv.xy);
 		float4 sum = centerTap;
@@ -198,7 +198,7 @@
 		return float4(sum.rgb / (1.0 + 2.0 * NumDiscSamples), w);
 	}
 	
-	float4 fragFieldHQ (v2f i) : SV_Target 
+	float4 fragFieldHQ (v2f i) : COLOR 
 	{
 		float4 centerTap = tex2D(_MainTex, i.uv.xy);
 		float4 sum = centerTap;
