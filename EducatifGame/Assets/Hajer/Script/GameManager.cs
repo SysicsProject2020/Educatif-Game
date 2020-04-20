@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityLibrary;
 public class GameManager : MonoBehaviour
 {
     public List<Quest> quests;
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     public PlayerMvt playerMvt;
     public List<Pos> Allpos;
     public AlphabeticManager alphabeticManager;
+
+    public List<string> Dialoguesound;
     private void Awake()
     {
         foreach (var item in quests)
@@ -66,16 +69,46 @@ public class GameManager : MonoBehaviour
             {
                 if (item.isprogress)
                 {
+                    StartCoroutine(talk(Dialoguesound));
+
                     return;
                 }
                 else
                 {
+                    Dialoguesound.Clear();
                     DialogueCanvas.SetActive(true);
+                    Dialoguesound.Add(item.MissionName);
+                    Dialoguesound.Add(item.Desc);
+                    Dialoguesound.Add(item.MissionName);
+                    Dialoguesound.Add(item.MissionName);
+                    StartCoroutine(talk(Dialoguesound));
+                   
                     SetupCanvas(item);
                     return;
                 }
             }
         }
+    }
+
+    IEnumerator talk(List<string> str)
+    {
+        foreach (var item in str)
+        {
+            Speech.instance.Say(item, TTSCallback);
+            yield return new WaitForSeconds(2f);
+        }
+       
+    }
+    void TTSCallback(string message, AudioClip audio)
+    {
+        AudioSource source = GetComponent<AudioSource>();
+        if (source == null)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
+
+        source.clip = audio;
+        source.Play();
     }
     public void continueButton()
     {

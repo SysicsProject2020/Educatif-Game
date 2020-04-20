@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityLibrary;
 public class PlayerEvents : MonoBehaviour
 {
     public delegate void ShowCanvas(bool isactive);
@@ -28,7 +28,19 @@ public class PlayerEvents : MonoBehaviour
         if (collision.gameObject.GetComponent<ItemCollectable>()!=null)
         {
             alphabeticManager.getCollectableObj(collision.gameObject.GetComponent<ItemCollectable>());
+            Speech.instance.Say(collision.gameObject.GetComponent<ItemCollectable>()._alphabet, TTSCallback);
         }
+    }
+    void TTSCallback(string message, AudioClip audio)
+    {
+        AudioSource source = GetComponent<AudioSource>();
+        if (source == null)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
+
+        source.clip = audio;
+        source.Play();
     }
     private void OnCollisionExit(Collision collision)
     {
