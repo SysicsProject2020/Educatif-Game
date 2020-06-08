@@ -36,6 +36,7 @@ public class Quest : ScriptableObject
             {
                 isprogress = false;
                 isfinished = true;
+                GameManager.showCanvasAlphabitics();
             }
         }
     }

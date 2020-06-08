@@ -9,6 +9,7 @@ public class PlayerEvents : MonoBehaviour
     bool iscollisionwithmaster;
     public GameManager gameManager;
     public AlphabeticManager alphabeticManager;
+    public GameObject MasterCam;
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag == "Master")
@@ -18,6 +19,8 @@ public class PlayerEvents : MonoBehaviour
             if (showcanvas != null)
             {
                 showcanvas(true);
+                collision.transform.gameObject.GetComponentInChildren<Animator>().SetBool("talking", true);
+                MasterCam.SetActive(true);
                 iscollisionwithmaster = true;
 
             }
@@ -50,6 +53,9 @@ public class PlayerEvents : MonoBehaviour
             //so disable Press E menu
             if (showcanvas != null)
             {
+                collision.transform.gameObject.GetComponentInChildren<Animator>().SetBool("talking", false);
+                MasterCam.SetActive(false);
+
                 showcanvas(false);
                 iscollisionwithmaster = false;
 
@@ -63,6 +69,8 @@ public class PlayerEvents : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
+               
+
                 //Disable Movement
                 GetComponent<PlayerMvt>().enabled = false;
                 gameManager.SetQuest();

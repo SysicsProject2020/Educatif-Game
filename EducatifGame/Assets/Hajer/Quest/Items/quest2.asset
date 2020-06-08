@@ -12,21 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f7965cc5084e746b7f6357132842e8, type: 3}
   m_Name: quest2
   m_EditorClassIdentifier: 
-  MissionName: mama
+  MissionName: MAMA
   Desc: Collect mama
   icon: {fileID: 21300000, guid: a61f4287c726dcd48b9db48e726a7a47, type: 3}
-  isprogress: 0
-  isfinished: 1
+  isprogress: 1
+  isfinished: 0
   itemPositions:
   - position: {x: 522, y: 0.55999994, z: 477.24}
     obj: {fileID: 2350964870295924214, guid: 6179fd2772cd0414e855b4be23fc97ea, type: 3}
-    text: m
+    text: M
+    iscollected: 1
   - position: {x: 506.9, y: 0.55999994, z: 485.94}
     obj: {fileID: 2350964870295924214, guid: 6179fd2772cd0414e855b4be23fc97ea, type: 3}
-    text: a
+    text: A
+    iscollected: 1
   - position: {x: 504.1, y: 0.55999994, z: 503}
     obj: {fileID: 2350964870295924214, guid: 6179fd2772cd0414e855b4be23fc97ea, type: 3}
-    text: m
+    text: M
+    iscollected: 0
   - position: {x: 507.62, y: 0.55999994, z: 510.75}
     obj: {fileID: 2350964870295924214, guid: 6179fd2772cd0414e855b4be23fc97ea, type: 3}
-    text: a
+    text: A
+    iscollected: 0

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public AlphabeticManager alphabeticManager;
 
     public List<string> Dialoguesound;
+    public GameObject SimpleCanvasDialogue;
+    public GameObject CanvasQuestAlphabitics;
     private void Awake()
     {
         foreach (var item in quests)
@@ -69,6 +71,8 @@ public class GameManager : MonoBehaviour
             {
                 if (item.isprogress)
                 {
+                   
+                    SimpleCanvasDialogue.SetActive(true);
                     StartCoroutine(talk(Dialoguesound));
 
                     return;
@@ -123,10 +127,31 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    public void simpleContinue()
+    {
+                    SimpleCanvasDialogue.SetActive(false);
+       
+        playerMvt.enabled = true;
+    }
     private void Update()
     {
-       
-        
+
+        if (toshow==true)
+        {
+            CanvasQuestAlphabitics.SetActive(true);
+            toshow = false;
+        }
+    }
+
+    static bool toshow;
+    public static void showCanvasAlphabitics()
+    {
+        toshow = true;
+    }
+    void showobj()
+    {
+
+        CanvasQuestAlphabitics.SetActive(true);
     }
 }
 
