@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissionName: PANDA
   Desc: Collect the panda name
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: af8a12e8694820244a8ed3491b8a79fe, type: 3}
   isprogress: 0
   isfinished: 1
   itemPositions:
